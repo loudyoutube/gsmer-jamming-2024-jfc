@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=3 uid="uid://bykopx1spsrj7"]
+
+[ext_resource type="Texture2D" uid="uid://gqw4o2x5ufed" path="res://Amogus1.png" id="1_7crx3"]
+[ext_resource type="Texture2D" uid="uid://p65y1ghv7k8h" path="res://icon.svg" id="2_4mxai"]
+[ext_resource type="Script" path="res://PanelContainer.gd" id="2_iv65d"]
+[ext_resource type="Texture2D" uid="uid://cybdpe78lhasf" path="res://slime-icon.png" id="3_e4th8"]
+[ext_resource type="PackedScene" uid="uid://81sd3fpvggpr" path="res://Player.tscn" id="5_1mp2k"]
+[ext_resource type="PackedScene" uid="uid://bqgtelcnghh56" path="res://characters.tscn" id="5_jtpnp"]
+
+[sub_resource type="Curve2D" id="Curve2D_5ba16"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 11.25, 4.25, 0, 0, 0, 0, -95.5, 7.5)
+}
+point_count = 2
+
+[node name="Game" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(8.96875, 5.01563)
+texture = ExtResource("2_4mxai")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+offset_left = 4.0
+offset_top = 457.0
+offset_right = 130.0
+offset_bottom = 644.0
+script = ExtResource("2_iv65d")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 15
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("1_7crx3")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Moneylabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "100"
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("2_4mxai")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Populationlabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "100"
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("3_e4th8")
+stretch_mode = 5
+
+[node name="Happynesslabel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "100"
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("5_1mp2k")]
+position = Vector2(351, 245)
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(1260, 252)
+scale = Vector2(4, 4)
+curve = SubResource("Curve2D_5ba16")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(11.25, 4.25)
+rotation = 3.11116
+
+[node name="characters" parent="Path2D/PathFollow2D" instance=ExtResource("5_jtpnp")]
+position = Vector2(-0.409393, -0.747307)
